@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\ContactMessage;
+use Illuminate\Http\Request;
 
 class ContactMessageController extends Controller
 {
@@ -19,6 +20,18 @@ class ContactMessageController extends Controller
         $contactMessage->update(['is_read' => true]);
 
         return view('admin.contact-messages.show', compact('contactMessage'));
+    }
+
+    public function update(Request $request, ContactMessage $contactMessage)
+    {
+        $data = $request->validate([
+            'status' => 'required|string',
+            'admin_notes' => 'nullable|string',
+        ]);
+
+        $contactMessage->update($data);
+
+        return back()->with('success', 'Lead updated.');
     }
 
     public function destroy(ContactMessage $contactMessage)

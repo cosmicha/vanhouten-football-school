@@ -3,6 +3,7 @@
 use App\Http\Controllers\Admin\ArticleController;
 use App\Http\Controllers\Admin\CoachController;
 use App\Http\Controllers\Admin\ContactMessageController;
+use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\GalleryItemController;
 use App\Http\Controllers\Admin\ProgramController;
 use App\Http\Controllers\Admin\SiteSettingController;
@@ -19,10 +20,11 @@ Route::get('/articles/{article}', [PublicPageController::class, 'article'])->nam
 Route::post('/contact', [ContactController::class, 'store'])->name('contact.store');
 
 Route::get('/dashboard', function () {
-    return redirect()->route('admin.settings.edit');
+    return redirect()->route('admin.dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
 
 Route::middleware('auth')->group(function () {
+    Route::get('/admin', [DashboardController::class, 'index'])->name('admin.dashboard');
     Route::get('/admin/settings', [SiteSettingController::class, 'edit'])->name('admin.settings.edit');
     Route::post('/admin/settings', [SiteSettingController::class, 'update'])->name('admin.settings.update');
 
@@ -33,7 +35,7 @@ Route::middleware('auth')->group(function () {
     Route::resource('/admin/gallery', GalleryItemController::class)->names('admin.gallery');
     Route::resource('/admin/videos', VideoItemController::class)->names('admin.videos');
     Route::resource('/admin/articles', ArticleController::class)->names('admin.articles');
-    Route::resource('/admin/contact-messages', ContactMessageController::class)->only(['index', 'show', 'destroy'])->names('admin.contact-messages');
+    Route::resource('/admin/contact-messages', ContactMessageController::class)->only(['index', 'show', 'update', 'destroy'])->names('admin.contact-messages');
 
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');

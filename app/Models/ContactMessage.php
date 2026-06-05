@@ -14,5 +14,7 @@ class ContactMessage extends Model
         'email',
         'message',
         'is_read',
+        'status',
+        'admin_notes',
     ];
 }

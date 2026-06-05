@@ -31,7 +31,7 @@
                         <td class="p-4">{{ $message->phone }}</td>
                         <td class="p-4">
                             <span class="px-3 py-1 rounded-full text-sm font-bold {{ $message->is_read ? 'bg-slate-100 text-slate-500' : 'bg-emerald-100 text-emerald-700' }}">
-                                {{ $message->is_read ? 'Read' : 'New' }}
+                                {{ str_replace('_', ' ', ucfirst($message->status)) }}
                             </span>
                         </td>
                         <td class="p-4 text-right">

@@ -17,6 +17,7 @@
             <nav class="p-4 space-y-2 flex-1">
                 @php
                     $menus = [
+                        ['Dashboard', 'admin.dashboard'],
                         ['Settings', 'admin.settings.edit'],
                         ['Programs', 'admin.programs.index'],
                         ['Coaches', 'admin.coaches.index'],

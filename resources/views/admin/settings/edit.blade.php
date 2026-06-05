@@ -75,10 +75,21 @@
                         <div class="mb-3 text-sm text-slate-500 bg-slate-50 border rounded-2xl p-3">
                             Recommended: 500 x 500 px, transparent PNG or JPG. Auto-converted to optimized JPG.
                         </div>
-                        <input type="file" name="logo" class="w-full rounded-2xl border p-4">
+
                         @if($setting->logo)
-                            <img src="{{ asset('storage/'.$setting->logo) }}" class="mt-4 h-20 rounded-xl bg-slate-100 p-2">
+                            <div class="mb-4 rounded-2xl border bg-slate-50 p-4">
+                                <div class="text-sm font-bold text-slate-500 mb-2">Current Logo</div>
+                                <img src="{{ asset('storage/'.$setting->logo) }}" class="h-24 rounded-xl bg-white p-2 border">
+
+                                <label class="mt-4 flex items-center gap-2 text-red-600 font-bold">
+                                    <input type="checkbox" name="remove_logo" value="1">
+                                    Delete current logo
+                                </label>
+                            </div>
                         @endif
+
+                        <input type="file" name="logo" class="w-full rounded-2xl border p-4">
+                        <div class="mt-2 text-sm text-slate-500">Upload new file to replace the current logo.</div>
                     </div>
 
                     <div>
@@ -86,10 +97,21 @@
                         <div class="mb-3 text-sm text-slate-500 bg-slate-50 border rounded-2xl p-3">
                             Recommended: 1920 x 1080 px, 16:9 landscape, max 8 MB. Auto-cropped and optimized.
                         </div>
-                        <input type="file" name="hero_image" class="w-full rounded-2xl border p-4">
+
                         @if($setting->hero_image)
-                            <img src="{{ asset('storage/'.$setting->hero_image) }}" class="mt-4 h-40 w-full rounded-2xl object-cover">
+                            <div class="mb-4 rounded-2xl border bg-slate-50 p-4">
+                                <div class="text-sm font-bold text-slate-500 mb-2">Current Hero Image</div>
+                                <img src="{{ asset('storage/'.$setting->hero_image) }}" class="h-48 w-full rounded-2xl object-cover border">
+
+                                <label class="mt-4 flex items-center gap-2 text-red-600 font-bold">
+                                    <input type="checkbox" name="remove_hero_image" value="1">
+                                    Delete current hero image
+                                </label>
+                            </div>
                         @endif
+
+                        <input type="file" name="hero_image" class="w-full rounded-2xl border p-4">
+                        <div class="mt-2 text-sm text-slate-500">Upload new file to replace the current hero image.</div>
                     </div>
                 </div>
             </div>
